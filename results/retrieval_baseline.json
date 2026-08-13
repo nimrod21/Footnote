@@ -1,0 +1,1176 @@
+{
+  "suite": "retrieval",
+  "timestamp": "2026-08-13T16:51:50",
+  "git_sha": "cbff0f4",
+  "config": {
+    "corpus": [
+      "gdpr",
+      "ai_act"
+    ],
+    "chunk_strategy": "provision",
+    "window_size": 512,
+    "window_overlap": 64,
+    "embedding_provider": "jina",
+    "embedding_model": "jina-embeddings-v3",
+    "dense_enabled": true,
+    "sparse_enabled": true,
+    "top_k_dense": 50,
+    "top_k_sparse": 50,
+    "fusion_k": 60,
+    "rerank_enabled": true,
+    "rerank_model": "jina-reranker-v2-base-multilingual",
+    "rerank_top_n": 10,
+    "generation_model": "",
+    "judge_model": "",
+    "prompt_version": "v1",
+    "confidence_threshold": 0.0,
+    "agent_enabled": false,
+    "max_hops": 4,
+    "max_cost_usd": 0.05
+  },
+  "config_hash": "c57fb3965cfb",
+  "wall_seconds": 514.3,
+  "aggregate": {
+    "n": 53,
+    "recall@10": 0.6226,
+    "mrr": 0.497,
+    "gold_in_top_5": 0.5849,
+    "gold_in_top_10": 0.6415
+  },
+  "by_source": {
+    "authored": {
+      "n": 30,
+      "recall@10": 0.9667,
+      "mrr": 0.8372,
+      "gold_in_top_5": 0.9667,
+      "gold_in_top_10": 1.0
+    },
+    "recital_map": {
+      "n": 23,
+      "recall@10": 0.1739,
+      "mrr": 0.0531,
+      "gold_in_top_5": 0.087,
+      "gold_in_top_10": 0.1739
+    }
+  },
+  "rows": [
+    {
+      "qid": "rm_ai_act_rec_104",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:4"
+      ],
+      "retrieved": [
+        "ai_act:art:54:6",
+        "ai_act:art:53:2",
+        "ai_act:rec:104",
+        "ai_act:art:52:2",
+        "ai_act:art:56:7",
+        "ai_act:art:53:1",
+        "ai_act:art:52:3",
+        "ai_act:art:55:1",
+        "ai_act:art:25:4",
+        "ai_act:rec:102"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_106",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:4"
+      ],
+      "retrieved": [
+        "ai_act:art:53:1",
+        "ai_act:rec:106",
+        "ai_act:art:2:1",
+        "ai_act:art:54:3",
+        "ai_act:art:54:1",
+        "ai_act:art:111:3",
+        "ai_act:art:55:1",
+        "ai_act:rec:109",
+        "ai_act:rec:104",
+        "ai_act:rec:117"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_121",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:2"
+      ],
+      "retrieved": [
+        "ai_act:rec:121",
+        "ai_act:art:3",
+        "ai_act:rec:139",
+        "ai_act:rec:64",
+        "ai_act:rec:117",
+        "ai_act:art:40:1",
+        "ai_act:art:43:1",
+        "ai_act:art:40:3",
+        "ai_act:art:3:27",
+        "ai_act:art:17:1"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_122",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:54"
+      ],
+      "retrieved": [
+        "ai_act:rec:122",
+        "ai_act:art:42:1",
+        "ai_act:art:10:4",
+        "ai_act:art:41:3",
+        "ai_act:art:13:3",
+        "ai_act:art:16",
+        "ai_act:rec:77",
+        "ai_act:art:43:1",
+        "ai_act:art:40:1",
+        "ai_act:rec:67"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_136",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:16"
+      ],
+      "retrieved": [
+        "ai_act:rec:120",
+        "ai_act:rec:136",
+        "ai_act:art:50:7",
+        "ai_act:art:50:4",
+        "ai_act:art:50:2",
+        "ai_act:rec:118",
+        "ai_act:rec:134",
+        "ai_act:rec:133",
+        "ai_act:art:16",
+        "ai_act:art:25:1"
+      ],
+      "first_gold_rank": 9,
+      "gold_found": 1
+    },
+    {
+      "qid": "rm_ai_act_rec_160",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:9"
+      ],
+      "retrieved": [
+        "ai_act:art:74:11",
+        "ai_act:rec:160",
+        "ai_act:art:79:7",
+        "ai_act:art:46:3",
+        "ai_act:art:79:2",
+        "ai_act:art:74:10",
+        "ai_act:art:75:2",
+        "ai_act:art:81:1",
+        "ai_act:art:66",
+        "ai_act:rec:161"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_164",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:18"
+      ],
+      "retrieved": [
+        "ai_act:rec:162",
+        "ai_act:art:89:1",
+        "ai_act:art:92:1",
+        "ai_act:rec:164",
+        "ai_act:art:53:1",
+        "ai_act:art:91:1",
+        "ai_act:art:75:1",
+        "ai_act:art:54:3",
+        "ai_act:rec:151",
+        "ai_act:art:55:1"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_176",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:5"
+      ],
+      "retrieved": [
+        "ai_act:rec:176",
+        "gdpr:rec:170",
+        "ai_act:rec:1",
+        "ai_act:art:1:1",
+        "ai_act:rec:8",
+        "ai_act:art:7:2",
+        "ai_act:art:81:2",
+        "ai_act:art:79:2",
+        "ai_act:art:5:1",
+        "ai_act:rec:20"
+      ],
+      "first_gold_rank": 9,
+      "gold_found": 1
+    },
+    {
+      "qid": "rm_ai_act_rec_180",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:42"
+      ],
+      "retrieved": [
+        "ai_act:rec:180",
+        "ai_act:art:5:1",
+        "ai_act:art:3",
+        "gdpr:art:4",
+        "ai_act:art:59:1",
+        "gdpr:rec:71",
+        "gdpr:art:75:4",
+        "gdpr:art:70:1",
+        "ai_act:rec:10",
+        "gdpr:art:57:1"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_24",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:4"
+      ],
+      "retrieved": [
+        "ai_act:rec:24",
+        "ai_act:art:2:3",
+        "ai_act:art:5:1",
+        "ai_act:art:2:1",
+        "ai_act:art:3",
+        "ai_act:rec:29",
+        "ai_act:rec:25",
+        "ai_act:rec:22",
+        "ai_act:rec:59",
+        "ai_act:art:1:2"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_33",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:2"
+      ],
+      "retrieved": [
+        "ai_act:rec:33",
+        "ai_act:rec:34",
+        "ai_act:art:5:1",
+        "ai_act:rec:53",
+        "ai_act:rec:38",
+        "ai_act:art:5:2",
+        "ai_act:rec:3",
+        "ai_act:rec:59",
+        "ai_act:rec:35",
+        "ai_act:art:26:10"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_48",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:24"
+      ],
+      "retrieved": [
+        "ai_act:rec:48",
+        "ai_act:art:27:1",
+        "ai_act:art:7:2",
+        "ai_act:art:6:3",
+        "ai_act:rec:60",
+        "ai_act:rec:59",
+        "ai_act:rec:58",
+        "ai_act:art:13:3",
+        "ai_act:art:6:2",
+        "ai_act:rec:61"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_54",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:9"
+      ],
+      "retrieved": [
+        "ai_act:rec:54",
+        "ai_act:anx:III:1",
+        "ai_act:rec:32",
+        "ai_act:art:3",
+        "ai_act:rec:60",
+        "ai_act:rec:58",
+        "ai_act:art:5:1",
+        "ai_act:rec:132",
+        "ai_act:rec:30",
+        "ai_act:rec:59"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_62",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:39"
+      ],
+      "retrieved": [
+        "ai_act:rec:62",
+        "ai_act:anx:III:8",
+        "ai_act:art:6:3",
+        "ai_act:art:5:1",
+        "ai_act:rec:58",
+        "ai_act:art:3",
+        "ai_act:rec:53",
+        "ai_act:art:86:1",
+        "ai_act:rec:46",
+        "ai_act:rec:54"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_ai_act_rec_84",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:16"
+      ],
+      "retrieved": [
+        "ai_act:art:25:1",
+        "ai_act:art:16",
+        "ai_act:art:25:3",
+        "ai_act:rec:84",
+        "ai_act:art:24:2",
+        "ai_act:art:24:4",
+        "ai_act:art:24:1",
+        "ai_act:art:111:2",
+        "ai_act:art:20:1",
+        "ai_act:art:24:3"
+      ],
+      "first_gold_rank": 2,
+      "gold_found": 1
+    },
+    {
+      "qid": "rm_ai_act_rec_93",
+      "source": "recital_map",
+      "gold": [
+        "ai_act:art:13"
+      ],
+      "retrieved": [
+        "ai_act:art:27:1",
+        "ai_act:art:13:3",
+        "ai_act:art:27:2",
+        "ai_act:rec:93",
+        "ai_act:art:9:5",
+        "ai_act:art:26:5",
+        "ai_act:rec:96",
+        "ai_act:art:25:1",
+        "ai_act:rec:72",
+        "ai_act:art:26:8"
+      ],
+      "first_gold_rank": 2,
+      "gold_found": 1
+    },
+    {
+      "qid": "rm_gdpr_rec_12",
+      "source": "recital_map",
+      "gold": [
+        "gdpr:art:16"
+      ],
+      "retrieved": [
+        "gdpr:rec:12",
+        "gdpr:art:1:1",
+        "gdpr:art:98",
+        "gdpr:art:1:3",
+        "gdpr:rec:3",
+        "gdpr:art:2:2",
+        "gdpr:rec:19",
+        "gdpr:art:4",
+        "gdpr:rec:1",
+        "gdpr:rec:166"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_gdpr_rec_13",
+      "source": "recital_map",
+      "gold": [
+        "gdpr:art:2"
+      ],
+      "retrieved": [
+        "gdpr:rec:13",
+        "gdpr:rec:10",
+        "ai_act:rec:3",
+        "gdpr:art:4",
+        "gdpr:art:42:1",
+        "gdpr:rec:170",
+        "gdpr:rec:123",
+        "gdpr:rec:11",
+        "gdpr:art:1:3",
+        "gdpr:rec:9"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_gdpr_rec_141",
+      "source": "recital_map",
+      "gold": [
+        "gdpr:art:47"
+      ],
+      "retrieved": [
+        "gdpr:art:77:1",
+        "gdpr:rec:141",
+        "gdpr:art:56:2",
+        "gdpr:art:79:1",
+        "gdpr:art:80:2",
+        "gdpr:rec:142",
+        "gdpr:art:78:2",
+        "gdpr:rec:124",
+        "gdpr:art:15:1",
+        "gdpr:art:79:2"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_gdpr_rec_153",
+      "source": "recital_map",
+      "gold": [
+        "gdpr:art:11"
+      ],
+      "retrieved": [
+        "gdpr:art:85:2",
+        "gdpr:art:85:1",
+        "gdpr:rec:153",
+        "gdpr:art:89:2",
+        "gdpr:rec:51",
+        "gdpr:rec:10",
+        "gdpr:rec:164",
+        "gdpr:art:86",
+        "gdpr:art:89:3",
+        "gdpr:art:4"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_gdpr_rec_165",
+      "source": "recital_map",
+      "gold": [
+        "gdpr:art:17"
+      ],
+      "retrieved": [
+        "gdpr:rec:165",
+        "gdpr:art:91:1",
+        "gdpr:art:91:2",
+        "ai_act:rec:9",
+        "ai_act:rec:25",
+        "ai_act:art:2:9",
+        "gdpr:rec:41",
+        "gdpr:rec:19",
+        "ai_act:art:2:3",
+        "gdpr:rec:143"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_gdpr_rec_170",
+      "source": "recital_map",
+      "gold": [
+        "gdpr:art:5"
+      ],
+      "retrieved": [
+        "gdpr:rec:170",
+        "ai_act:rec:176",
+        "gdpr:rec:53",
+        "gdpr:rec:10",
+        "gdpr:rec:13",
+        "ai_act:rec:3",
+        "gdpr:rec:19",
+        "gdpr:art:1:3",
+        "gdpr:art:4",
+        "gdpr:rec:166"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "rm_gdpr_rec_172",
+      "source": "recital_map",
+      "gold": [
+        "gdpr:art:28"
+      ],
+      "retrieved": [
+        "gdpr:rec:172",
+        "gdpr:rec:17",
+        "ai_act:rec:180",
+        "gdpr:art:4",
+        "gdpr:rec:71",
+        "gdpr:art:2:3",
+        "gdpr:art:70:1",
+        "ai_act:art:100:1",
+        "ai_act:art:100:4",
+        "gdpr:art:76:2"
+      ],
+      "first_gold_rank": null,
+      "gold_found": 0
+    },
+    {
+      "qid": "au_01",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:6"
+      ],
+      "retrieved": [
+        "gdpr:rec:46",
+        "gdpr:art:6:1",
+        "gdpr:rec:44",
+        "gdpr:rec:69",
+        "gdpr:art:10",
+        "gdpr:art:9:3",
+        "gdpr:rec:65",
+        "gdpr:rec:10",
+        "gdpr:art:8:1",
+        "gdpr:rec:53"
+      ],
+      "first_gold_rank": 2,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_02",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:6"
+      ],
+      "retrieved": [
+        "gdpr:rec:46",
+        "gdpr:rec:54",
+        "gdpr:art:21:2",
+        "gdpr:rec:49",
+        "gdpr:art:6:1",
+        "gdpr:art:21:3",
+        "ai_act:art:59:1",
+        "gdpr:art:9:2",
+        "gdpr:rec:40",
+        "gdpr:rec:47"
+      ],
+      "first_gold_rank": 5,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_03",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:4",
+        "gdpr:art:7"
+      ],
+      "retrieved": [
+        "gdpr:art:4:11",
+        "gdpr:art:7:4",
+        "gdpr:rec:43",
+        "gdpr:rec:32",
+        "gdpr:rec:40",
+        "gdpr:art:7:1",
+        "gdpr:rec:33",
+        "gdpr:rec:171",
+        "gdpr:art:18:2",
+        "gdpr:art:20:1"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 2
+    },
+    {
+      "qid": "au_04",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:33"
+      ],
+      "retrieved": [
+        "gdpr:art:33:1",
+        "gdpr:rec:85",
+        "gdpr:art:33:2",
+        "gdpr:art:78:2",
+        "gdpr:art:65:6",
+        "gdpr:art:34:1",
+        "gdpr:art:12:4",
+        "gdpr:rec:137",
+        "gdpr:art:56:3",
+        "ai_act:art:100:7"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_05",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:34"
+      ],
+      "retrieved": [
+        "gdpr:rec:85",
+        "gdpr:art:34:4",
+        "gdpr:art:34:1",
+        "gdpr:art:34:2",
+        "gdpr:art:33:1",
+        "gdpr:art:33:2",
+        "gdpr:art:33:3",
+        "gdpr:art:4:12",
+        "gdpr:art:34:3",
+        "gdpr:art:19"
+      ],
+      "first_gold_rank": 2,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_06",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:37"
+      ],
+      "retrieved": [
+        "gdpr:art:37:1",
+        "gdpr:art:37:5",
+        "gdpr:art:37:2",
+        "gdpr:art:37:4",
+        "gdpr:art:37:6",
+        "gdpr:art:37:7",
+        "gdpr:art:39:2",
+        "gdpr:art:38:4",
+        "gdpr:art:38:2",
+        "ai_act:rec:82"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_07",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:17"
+      ],
+      "retrieved": [
+        "gdpr:art:17:1",
+        "gdpr:rec:66",
+        "gdpr:rec:65",
+        "gdpr:rec:156",
+        "gdpr:rec:68",
+        "gdpr:rec:158",
+        "gdpr:art:20:3",
+        "gdpr:art:16",
+        "gdpr:rec:73",
+        "gdpr:art:89:3"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_08",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:22"
+      ],
+      "retrieved": [
+        "ai_act:art:86:1",
+        "ai_act:rec:29",
+        "ai_act:art:5:1",
+        "ai_act:rec:171",
+        "ai_act:art:7:2",
+        "gdpr:art:22:1",
+        "gdpr:art:15:1",
+        "ai_act:rec:31",
+        "ai_act:art:14:4",
+        "gdpr:art:4:4"
+      ],
+      "first_gold_rank": 6,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_09",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:13"
+      ],
+      "retrieved": [
+        "gdpr:art:13:1",
+        "ai_act:anx:VIII:2",
+        "ai_act:art:13:3",
+        "gdpr:art:13:2",
+        "gdpr:art:4:1",
+        "gdpr:art:14:1",
+        "gdpr:art:15:1",
+        "gdpr:rec:35",
+        "gdpr:rec:61",
+        "gdpr:art:14:2"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_10",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:9"
+      ],
+      "retrieved": [
+        "gdpr:rec:53",
+        "gdpr:art:9:3",
+        "ai_act:art:7:2",
+        "gdpr:art:30:5",
+        "gdpr:rec:52",
+        "gdpr:art:27:2",
+        "ai_act:art:3:37",
+        "gdpr:rec:91",
+        "ai_act:art:59:1",
+        "gdpr:rec:46"
+      ],
+      "first_gold_rank": 2,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_11",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:44",
+        "gdpr:art:45",
+        "gdpr:art:46"
+      ],
+      "retrieved": [
+        "gdpr:art:44",
+        "gdpr:art:45:1",
+        "gdpr:art:49:1",
+        "gdpr:art:48",
+        "gdpr:rec:101",
+        "gdpr:art:46:1",
+        "ai_act:rec:141",
+        "gdpr:rec:111",
+        "gdpr:art:14:1",
+        "gdpr:rec:112"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 3
+    },
+    {
+      "qid": "au_12",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:83"
+      ],
+      "retrieved": [
+        "gdpr:art:83:6",
+        "gdpr:art:83:4",
+        "ai_act:art:99:4",
+        "gdpr:art:83:5",
+        "ai_act:art:100:2",
+        "ai_act:art:100:3",
+        "ai_act:art:99:5",
+        "ai_act:art:99:3",
+        "gdpr:rec:151",
+        "ai_act:art:100:7"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_13",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:35"
+      ],
+      "retrieved": [
+        "gdpr:rec:91",
+        "gdpr:art:35:1",
+        "gdpr:art:35:10",
+        "gdpr:art:35:5",
+        "gdpr:art:35:4",
+        "gdpr:art:35:3",
+        "ai_act:art:27:4",
+        "gdpr:rec:92",
+        "gdpr:art:35:2",
+        "gdpr:art:35:11"
+      ],
+      "first_gold_rank": 2,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_14",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:28"
+      ],
+      "retrieved": [
+        "gdpr:art:28:6",
+        "gdpr:art:6:1",
+        "gdpr:art:28:4",
+        "gdpr:rec:44",
+        "gdpr:rec:68",
+        "gdpr:art:46:3",
+        "gdpr:art:22:2",
+        "gdpr:rec:40",
+        "gdpr:rec:23",
+        "gdpr:art:28:5"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_15",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:20"
+      ],
+      "retrieved": [
+        "gdpr:art:20:2",
+        "gdpr:art:20:1",
+        "gdpr:rec:73",
+        "gdpr:rec:68",
+        "gdpr:art:13:2",
+        "gdpr:rec:4",
+        "gdpr:art:14:2",
+        "gdpr:rec:63",
+        "gdpr:rec:1",
+        "gdpr:rec:156"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_16",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:3"
+      ],
+      "retrieved": [
+        "gdpr:art:3:2",
+        "gdpr:art:3:3",
+        "gdpr:art:2:2",
+        "gdpr:rec:24",
+        "gdpr:rec:23",
+        "gdpr:rec:14",
+        "gdpr:rec:116",
+        "gdpr:art:47:2",
+        "gdpr:rec:128",
+        "gdpr:art:48"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_17",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:30"
+      ],
+      "retrieved": [
+        "gdpr:art:30:1",
+        "gdpr:art:30:2",
+        "gdpr:art:11:1",
+        "gdpr:art:30:4",
+        "gdpr:art:49:6",
+        "gdpr:art:37:1",
+        "gdpr:art:4:23",
+        "gdpr:art:35:10",
+        "gdpr:rec:131",
+        "gdpr:rec:45"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_18",
+      "source": "authored",
+      "gold": [
+        "gdpr:art:32"
+      ],
+      "retrieved": [
+        "gdpr:art:32:1",
+        "gdpr:art:25:1",
+        "gdpr:art:32:2",
+        "gdpr:art:23:2",
+        "gdpr:rec:49",
+        "gdpr:art:10",
+        "gdpr:art:9:2",
+        "gdpr:rec:78",
+        "gdpr:art:40:2",
+        "gdpr:rec:51"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_19",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:5"
+      ],
+      "retrieved": [
+        "ai_act:art:5:1",
+        "ai_act:rec:28",
+        "ai_act:rec:43",
+        "ai_act:rec:29",
+        "ai_act:rec:30",
+        "ai_act:art:46:2",
+        "ai_act:rec:89",
+        "ai_act:rec:5",
+        "ai_act:rec:132",
+        "ai_act:art:1:2"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_20",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:6",
+        "ai_act:anx:III"
+      ],
+      "retrieved": [
+        "ai_act:rec:57",
+        "ai_act:rec:58",
+        "ai_act:rec:85",
+        "ai_act:art:6:3",
+        "ai_act:rec:56",
+        "ai_act:rec:93",
+        "ai_act:rec:52",
+        "ai_act:rec:53",
+        "ai_act:rec:73",
+        "ai_act:art:9:2"
+      ],
+      "first_gold_rank": 4,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_21",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:50"
+      ],
+      "retrieved": [
+        "ai_act:art:50:1",
+        "ai_act:rec:132",
+        "ai_act:rec:137",
+        "ai_act:art:13:3",
+        "ai_act:rec:174",
+        "ai_act:rec:134",
+        "ai_act:art:50:4",
+        "ai_act:rec:171",
+        "ai_act:art:86:1",
+        "ai_act:rec:72"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_22",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:9"
+      ],
+      "retrieved": [
+        "ai_act:art:9:2",
+        "ai_act:rec:75",
+        "ai_act:art:9:5",
+        "ai_act:rec:66",
+        "ai_act:rec:65",
+        "ai_act:art:9:6",
+        "ai_act:art:15:5",
+        "ai_act:art:8:1",
+        "ai_act:art:9:3",
+        "ai_act:art:9:1"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_23",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:10"
+      ],
+      "retrieved": [
+        "ai_act:art:10:1",
+        "ai_act:art:10:2",
+        "ai_act:art:42:1",
+        "ai_act:rec:122",
+        "ai_act:rec:67",
+        "ai_act:art:10:3",
+        "ai_act:rec:68",
+        "ai_act:rec:66",
+        "ai_act:art:15:5",
+        "ai_act:art:13:3"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_24",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:14"
+      ],
+      "retrieved": [
+        "ai_act:art:14:2",
+        "ai_act:art:14:4",
+        "ai_act:art:26:2",
+        "ai_act:art:14:3",
+        "ai_act:art:14:1",
+        "ai_act:art:27:1",
+        "ai_act:art:26:3",
+        "ai_act:art:26:12",
+        "ai_act:art:26:11",
+        "ai_act:art:26:1"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_25",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:53"
+      ],
+      "retrieved": [
+        "ai_act:art:53:1",
+        "ai_act:art:55:1",
+        "ai_act:art:55:2",
+        "ai_act:art:53:4",
+        "ai_act:art:53:3",
+        "ai_act:art:111:3",
+        "ai_act:art:56:7",
+        "ai_act:art:41:5",
+        "ai_act:rec:162",
+        "ai_act:rec:117"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_26",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:50"
+      ],
+      "retrieved": [
+        "ai_act:rec:134",
+        "ai_act:art:50:4",
+        "ai_act:art:3:60",
+        "ai_act:rec:136",
+        "ai_act:rec:135",
+        "ai_act:art:50:7",
+        "ai_act:rec:133",
+        "ai_act:art:50:2",
+        "ai_act:rec:132",
+        "ai_act:art:24:1"
+      ],
+      "first_gold_rank": 2,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_27",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:3"
+      ],
+      "retrieved": [
+        "ai_act:art:3:1",
+        "ai_act:art:3",
+        "ai_act:art:3:16",
+        "ai_act:rec:12",
+        "ai_act:art:111:1",
+        "ai_act:art:3:4",
+        "ai_act:art:79:1",
+        "ai_act:art:75:1",
+        "ai_act:rec:138",
+        "ai_act:rec:119"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_28",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:99"
+      ],
+      "retrieved": [
+        "ai_act:art:99:3",
+        "ai_act:art:100:2",
+        "ai_act:art:100:3",
+        "ai_act:art:99:5",
+        "ai_act:art:99:7",
+        "ai_act:art:101:1",
+        "ai_act:art:5:1",
+        "ai_act:art:99:2",
+        "ai_act:art:80:4",
+        "ai_act:rec:168"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_29",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:5"
+      ],
+      "retrieved": [
+        "ai_act:art:5:2",
+        "ai_act:art:5:5",
+        "ai_act:rec:35",
+        "ai_act:rec:34",
+        "ai_act:art:5:7",
+        "ai_act:art:5:6",
+        "ai_act:rec:38",
+        "ai_act:art:5:3",
+        "ai_act:rec:32",
+        "ai_act:art:5:4"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    },
+    {
+      "qid": "au_30",
+      "source": "authored",
+      "gold": [
+        "ai_act:art:16",
+        "ai_act:art:43"
+      ],
+      "retrieved": [
+        "ai_act:art:16",
+        "ai_act:art:20:1",
+        "ai_act:art:24:2",
+        "ai_act:art:20:2",
+        "ai_act:art:24:4",
+        "ai_act:art:49:1",
+        "ai_act:art:23:1",
+        "ai_act:art:60:2",
+        "ai_act:art:24:1",
+        "ai_act:art:23:2"
+      ],
+      "first_gold_rank": 1,
+      "gold_found": 1
+    }
+  ]
+}

@@ -38,6 +38,7 @@ class OpenRouterClient:
         max_tokens: int = 1200,
         temperature: float = 0.0,
         json_mode: bool = False,
+        reasoning_effort: str | None = None,  # cap thinking on reasoning models
     ) -> LLMResponse:
         payload: dict = {
             "model": model,
@@ -47,6 +48,8 @@ class OpenRouterClient:
         }
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
+        if reasoning_effort:
+            payload["reasoning"] = {"effort": reasoning_effort}
         headers = {"Authorization": f"Bearer {self.secrets.openrouter_api_key}"}
 
         delay = 3.0
@@ -64,8 +67,14 @@ class OpenRouterClient:
                     raise RuntimeError(f"OpenRouter error: {data['error']}")
                 usage = data.get("usage", {})
                 choice = data["choices"][0]
+                content = choice["message"]["content"] or ""
+                if not content.strip() and attempt < RETRIES - 1:
+                    # reasoning models can burn the whole budget thinking
+                    payload["max_tokens"] = max_tokens * 2
+                    time.sleep(2)
+                    continue
                 return LLMResponse(
-                    text=choice["message"]["content"] or "",
+                    text=content,
                     model=data.get("model", model),
                     prompt_tokens=usage.get("prompt_tokens", 0),
                     completion_tokens=usage.get("completion_tokens", 0),
@@ -78,3 +87,17 @@ class OpenRouterClient:
                 continue
             raise RuntimeError(f"OpenRouter {resp.status_code}: {resp.text[:300]}")
         raise RuntimeError("unreachable")  # pragma: no cover
+
+    def chat_with_fallback(self, models: list[str], messages: list[dict], **kw) -> LLMResponse:
+        """Try each model in order — free tiers rate-limit unpredictably, and the
+        zero-cost constraint says degrade to another free model, never upgrade."""
+        last: RuntimeError | None = None
+        for model in models:
+            try:
+                resp = self.chat(model, messages, **kw)
+                if resp.text.strip():
+                    return resp
+                last = RuntimeError(f"{model} returned empty content")
+            except RuntimeError as e:
+                last = e
+        raise last or RuntimeError("no models given")

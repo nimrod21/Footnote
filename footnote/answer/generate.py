@@ -108,8 +108,8 @@ class Answerer:
             + f"\n{p.text}"
             for p in retrieved.values()
         )
-        llm = self.client.chat(
-            model=cfg.generation_model,
+        llm = self.client.chat_with_fallback(
+            [cfg.generation_model, *cfg.fallback_models],
             messages=[
                 {"role": "system", "content": _load_prompt(cfg.prompt_version)},
                 {"role": "user", "content": f"Provisions:\n\n{provisions_block}\n\nQuestion: {question}"},
@@ -155,9 +155,10 @@ class Answerer:
         )
 
     def _in_scope(self, question: str) -> bool:
-        resp = self.client.chat(
-            model=self.config.generation_model,
+        resp = self.client.chat_with_fallback(
+            [self.config.generation_model, *self.config.fallback_models],
             messages=[{"role": "user", "content": SCOPE_PROMPT.format(q=question)}],
             max_tokens=1500,
+            reasoning_effort="low",
         )
         return "yes" in resp.text.strip().lower()[:20]

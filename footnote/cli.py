@@ -102,10 +102,20 @@ def ask(
     cfg = RunConfig()
     if model:
         cfg.generation_model = model
-    if agent:
-        raise typer.Exit(_todo("--agent", "M5"))
+    cfg.max_hops = max_hops
 
-    r = Answerer(cfg).ask(question, instrument=instrument)
+    if agent:
+        from footnote.agent.run import ask_with_agent
+
+        ar = ask_with_agent(question, cfg)
+        for h in ar.trace.hops:
+            typer.echo(f"hop {h.n}: {h.tool}({h.args}) -> {h.observation}")
+            if h.reasoning:
+                typer.echo(f"        {h.reasoning}")
+        typer.echo(f"terminated: {ar.trace.terminated_by} | policy tokens: {ar.policy_tokens}")
+        r = ar.ask
+    else:
+        r = Answerer(cfg).ask(question, instrument=instrument)
     a = r.answer
     typer.echo(f"[{a.verdict}] confidence={a.confidence:.3f}"
                + (f" gate={r.gate_fired}" if r.gate_fired else ""))
@@ -123,12 +133,37 @@ def ask(
 
 @app.command()
 def eval(
-    suite: str = typer.Option("all"),
-    config: str = typer.Option("configs/baseline.yaml"),
+    suite: str = typer.Option("retrieval", help="retrieval (answer/refusal land with pinned model)"),
+    out: str = typer.Option(None, help="Write results JSON here"),
     compare: str = typer.Option(None, help="Baseline results file for regression check"),
+    no_rerank: bool = typer.Option(False),
+    no_sparse: bool = typer.Option(False),
+    no_dense: bool = typer.Option(False),
+    strategy: str = typer.Option("provision"),
 ) -> None:
     """Run the eval suite. (M6)"""
-    raise typer.Exit(_todo("eval", "M6"))
+    import json as _json
+
+    from footnote.config import RunConfig
+    from footnote.evals import harness
+
+    cfg = RunConfig(
+        rerank_enabled=not no_rerank,
+        sparse_enabled=not no_sparse,
+        dense_enabled=not no_dense,
+        chunk_strategy=strategy,
+    )
+    result = harness.run_retrieval_suite(cfg, out_path=out)
+    typer.echo(_json.dumps({"aggregate": result["aggregate"],
+                            "by_source": result["by_source"],
+                            "wall_seconds": result["wall_seconds"]}, indent=2))
+    if compare:
+        baseline = _json.loads(open(compare, encoding="utf-8").read())
+        failures = harness.compare(result, baseline)
+        if failures:
+            typer.echo("REGRESSION: " + "; ".join(failures), err=True)
+            raise typer.Exit(1)
+        typer.echo("regression gate: OK")
 
 
 @app.command()

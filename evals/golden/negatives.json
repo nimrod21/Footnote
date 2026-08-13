@@ -1,0 +1,26 @@
+[
+  {"qid": "os_01", "question": "What is the weather in Tbilisi tomorrow?", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+  {"qid": "os_02", "question": "How do I write a for loop in Python?", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+  {"qid": "os_03", "question": "What is the best restaurant in Brussels?", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+  {"qid": "os_04", "question": "Who won the 2024 US presidential election?", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+  {"qid": "os_05", "question": "Write me a poem about privacy.", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+  {"qid": "os_06", "question": "What is the capital of France?", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+  {"qid": "os_07", "question": "How do I improve my website's SEO ranking?", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+  {"qid": "os_08", "question": "Recommend a good book about machine learning.", "gold_articles": [], "source": "negative:out_of_scope", "expect": "out_of_scope"},
+
+  {"qid": "un_01", "question": "What is the maximum fine for data protection violations under Georgian national law?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+  {"qid": "un_02", "question": "How does the California Consumer Privacy Act define personal information?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+  {"qid": "un_03", "question": "What does the GDPR say about blockchain and smart contracts specifically?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+  {"qid": "un_04", "question": "Which specific companies has the EU fined under the AI Act so far?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+  {"qid": "un_05", "question": "What retention period does the GDPR set for CCTV footage?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+  {"qid": "un_06", "question": "What does the ePrivacy Regulation say about cookies?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+  {"qid": "un_07", "question": "How much does a conformity assessment for a high-risk AI system cost?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+  {"qid": "un_08", "question": "Which EU member state has implemented the AI Act most strictly?", "gold_articles": [], "source": "negative:unanswerable", "expect": "refused"},
+
+  {"qid": "tr_01", "question": "What does Article 150 of the GDPR say?", "gold_articles": [], "source": "negative:trap", "expect": "refused"},
+  {"qid": "tr_02", "question": "Explain Article 250 of the AI Act.", "gold_articles": [], "source": "negative:trap", "expect": "refused"},
+  {"qid": "tr_03", "question": "What are the requirements of Annex XV of the GDPR?", "gold_articles": [], "source": "negative:trap", "expect": "refused"},
+  {"qid": "tr_04", "question": "Summarise Recital 300 of the GDPR.", "gold_articles": [], "source": "negative:trap", "expect": "refused"},
+  {"qid": "tr_05", "question": "What does the GDPR's chapter on criminal sentencing guidelines contain?", "gold_articles": [], "source": "negative:trap", "expect": "refused"},
+  {"qid": "tr_06", "question": "What fines does Article 100 GDPR impose on data brokers?", "gold_articles": [], "source": "negative:trap", "expect": "refused"}
+]

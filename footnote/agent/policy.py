@@ -30,20 +30,25 @@ class LLMPolicy:
         self, question: str, trace: AgentTrace, gathered: dict[str, Provision]
     ) -> Decision:
         state = self._render_state(question, trace, gathered)
-        resp = self.client.chat(
-            model=self.config.generation_model,
+        resp = self.client.chat_with_fallback(
+            [self.config.generation_model, *self.config.fallback_models],
             messages=[
                 {"role": "system", "content": self.system},
                 {"role": "user", "content": state},
             ],
             max_tokens=2000,
+            reasoning_effort="low",  # decisions are cheap; don't let thinking eat the budget
         )
         self.cost_usd += resp.cost_usd
         self.tokens += resp.prompt_tokens + resp.completion_tokens
 
         parsed = _extract_json(resp.text)
         if not parsed or parsed.get("tool") not in _VALID_TOOLS:
-            # Invalid decision = no progress; loop's no-progress guard handles repeats.
+            # Models that drift into prose usually think they're done. If we have
+            # provisions, synthesise from them; only refuse when we have nothing.
+            if gathered:
+                return Decision("answer", {},
+                                reasoning="invalid decision output with provisions gathered — synthesising")
             return Decision("refuse", {"reason": "agent produced an invalid decision"},
                             reasoning=f"unparseable decision: {resp.text[:120]}")
         return Decision(

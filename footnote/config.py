@@ -50,8 +50,12 @@ class RunConfig(BaseModel):
     rerank_top_n: int = 10
 
     # answering
-    generation_model: str = ""  # pinned after the M4 bake-off
-    judge_model: str = ""  # pinned in M6; must differ from generation_model
+    generation_model: str = "openai/gpt-oss-20b:free"  # M4 bake-off: 7/8 JSON, 2/2 refusals
+    fallback_models: list[str] = [
+        "nvidia/nemotron-3-ultra-550b-a55b:free",  # bake-off runner-up: 5/8 JSON, 2/2 refusals
+        "nvidia/nemotron-nano-9b-v2:free",
+    ]
+    judge_model: str = "nvidia/nemotron-3-ultra-550b-a55b:free"  # different vendor than generator
     prompt_version: str = "v1"
     confidence_threshold: float = 0.0  # calibrated in M6
 
