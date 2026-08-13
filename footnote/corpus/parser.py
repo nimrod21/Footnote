@@ -165,6 +165,8 @@ class InstrumentParser:
         is_definitions: bool,
     ) -> None:
         for row in scope.findall(".//tr"):
+            if _is_nested_row(row, scope):
+                continue  # sub-point of another point; stays inlined in parent text
             cells = row.findall("./td")
             if len(cells) != 2:
                 continue
@@ -272,6 +274,16 @@ class InstrumentParser:
                     if not p.provision_id.startswith(rid + ":") and rid != _parent_art(p):
                         refs.append(rid)
             p.cross_refs = refs
+
+
+def _is_nested_row(row: etree._Element, scope: etree._Element) -> bool:
+    """True if the row sits inside another row's cell (a sub-point list)."""
+    for anc in row.iterancestors():
+        if anc is scope:
+            return False
+        if anc.tag == "td":
+            return True
+    return False
 
 
 def _parent_art(p: Provision) -> str:

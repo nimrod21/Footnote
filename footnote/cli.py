@@ -33,7 +33,27 @@ def ingest(
     if dry_run:
         typer.echo("dry run - nothing embedded or indexed.")
         return
-    raise typer.Exit(_todo("embedding + indexing", "M2"))
+
+    from footnote.embed.jina import get_provider
+    from footnote.store.qdrant_store import QdrantStore, collection_name
+
+    provider = get_provider("jina")
+    store = QdrantStore()
+    name = collection_name(provider.model_id, strategy)
+    store.ensure_collection(name, provider.dimensions)
+
+    all_chunks = []
+    for iid in corpus.split(","):
+        iid = iid.strip()
+        provisions = parse_instrument(iid, fetch_instrument(iid))
+        all_chunks.extend(select_chunks(provisions, strategy))
+
+    vectors = provider.embed_documents([c.text for c in all_chunks])
+    store.upsert(name, all_chunks, vectors)
+    typer.echo(
+        f"indexed {len(all_chunks)} chunks into '{name}' ({store.mode}), "
+        f"total points={store.count(name)}, API tokens this run={provider.tokens_used:,}"
+    )
 
 
 @app.command()
