@@ -23,6 +23,9 @@ class Secrets(BaseSettings):
     qdrant_url: str = ""  # empty -> embedded local mode
     qdrant_api_key: str = ""
     openrouter_api_key: str = ""
+    groq_api_key: str = ""
+    gemini_api_key: str = ""
+    cerebras_api_key: str = ""
     hf_token: str = ""
 
 
@@ -50,12 +53,14 @@ class RunConfig(BaseModel):
     rerank_top_n: int = 10
 
     # answering
-    generation_model: str = "openai/gpt-oss-20b:free"  # M4 bake-off: 7/8 JSON, 2/2 refusals
+    # "provider::model" — the chain crosses PROVIDERS, not just models, because
+    # free tiers cap per account per day (OpenRouter: 50 requests/day).
+    generation_model: str = "groq::llama-3.3-70b-versatile"
     fallback_models: list[str] = [
-        "nvidia/nemotron-3-ultra-550b-a55b:free",  # bake-off runner-up: 5/8 JSON, 2/2 refusals
-        "nvidia/nemotron-nano-9b-v2:free",
+        "gemini::gemini-3.1-flash-lite-preview",
+        "openrouter::openai/gpt-oss-20b:free",  # original bake-off winner: 7/8 JSON
     ]
-    judge_model: str = "nvidia/nemotron-3-ultra-550b-a55b:free"  # different vendor than generator
+    judge_model: str = "gemini::gemini-3.1-flash-lite-preview"  # different vendor than generator
     prompt_version: str = "v1"
     confidence_threshold: float = 0.0  # calibrated in M6
 

@@ -1,0 +1,167 @@
+{
+  "groq::llama-3.3-70b-versatile": {
+    "json_ok": 8,
+    "citations_ok": 5,
+    "citations_rejected": 0,
+    "refusal_ok": 2,
+    "rows": [
+      {
+        "q": "When can I process personal data based on legitimate interes",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 2,
+        "labels": [
+          "Article 6(1) GDPR",
+          "Recital 49 GDPR"
+        ]
+      },
+      {
+        "q": "Is an AI system used for CV screening and recruitment consid",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 1,
+        "labels": [
+          "Recital 57 AI Act"
+        ]
+      },
+      {
+        "q": "What rights does a person have when a decision about them is",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 3,
+        "labels": [
+          "Article 15(1) GDPR",
+          "Article 86(1) AI Act",
+          "Recital 171 AI Act"
+        ]
+      },
+      {
+        "q": "Do I need to appoint a Data Protection Officer if I am a sma",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 2,
+        "labels": [
+          "Article 37(1) GDPR",
+          "Article 30(5) GDPR"
+        ]
+      },
+      {
+        "q": "What are the transparency obligations for chatbots under the",
+        "verdict": "refused",
+        "gate": null,
+        "n_citations": 0,
+        "labels": []
+      },
+      {
+        "q": "How long do I have to report a personal data breach to the s",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 1,
+        "labels": [
+          "Article 33(1) GDPR"
+        ]
+      },
+      {
+        "q": "What is the maximum fine for data protection violations in G",
+        "verdict": "refused",
+        "gate": null,
+        "n_citations": 0,
+        "labels": []
+      },
+      {
+        "q": "Does the AI Act regulate AI systems developed exclusively fo",
+        "verdict": "refused",
+        "gate": null,
+        "n_citations": 0,
+        "labels": []
+      }
+    ],
+    "median_latency_ms": 1502
+  },
+  "gemini::gemini-3.1-flash-lite-preview": {
+    "json_ok": 8,
+    "citations_ok": 6,
+    "citations_rejected": 0,
+    "refusal_ok": 2,
+    "rows": [
+      {
+        "q": "When can I process personal data based on legitimate interes",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 1,
+        "labels": [
+          "Recital 49 GDPR"
+        ]
+      },
+      {
+        "q": "Is an AI system used for CV screening and recruitment consid",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 1,
+        "labels": [
+          "Recital 57 AI Act"
+        ]
+      },
+      {
+        "q": "What rights does a person have when a decision about them is",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 3,
+        "labels": [
+          "Article 15(1) GDPR",
+          "Article 86(1) AI Act",
+          "Recital 171 AI Act"
+        ]
+      },
+      {
+        "q": "Do I need to appoint a Data Protection Officer if I am a sma",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 3,
+        "labels": [
+          "Article 37(1) GDPR",
+          "Article 37(4) GDPR",
+          "Recital 13 GDPR"
+        ]
+      },
+      {
+        "q": "What are the transparency obligations for chatbots under the",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 2,
+        "labels": [
+          "Article 50(1) AI Act",
+          "Recital 132 AI Act"
+        ]
+      },
+      {
+        "q": "How long do I have to report a personal data breach to the s",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 3,
+        "labels": [
+          "Article 33(1) GDPR",
+          "Article 33(1) GDPR",
+          "Recital 85 GDPR"
+        ]
+      },
+      {
+        "q": "What is the maximum fine for data protection violations in G",
+        "verdict": "refused",
+        "gate": null,
+        "n_citations": 0,
+        "labels": []
+      },
+      {
+        "q": "Does the AI Act regulate AI systems developed exclusively fo",
+        "verdict": "answered",
+        "gate": null,
+        "n_citations": 1,
+        "labels": [
+          "Article 2(3) AI Act"
+        ]
+      }
+    ],
+    "median_latency_ms": 4892
+  }
+}

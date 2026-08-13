@@ -1,6 +1,12 @@
-"""OpenRouter chat client. Free-tier models only; usage tracked per call.
+"""Multi-provider chat client over OpenAI-compatible APIs. Free tiers only.
 
-cost_usd records what the call *would* cost at list price — for :free models
+Models are qualified as "provider::model", e.g. "groq::llama-3.3-70b-versatile"
+or "openrouter::openai/gpt-oss-20b:free". Free tiers rate-limit unpredictably
+and cap daily usage, so resilience = a fallback chain across *providers*, not
+just across models on one provider (OpenRouter's 50-requests/day account cap
+proved that the hard way).
+
+cost_usd records what the call *would* cost at list price — for free tiers
 that is $0, logged alongside the tokens actually consumed.
 """
 
@@ -13,8 +19,23 @@ import httpx
 
 from footnote.config import Secrets
 
-API_URL = "https://openrouter.ai/api/v1/chat/completions"
 RETRIES = 4
+
+# provider -> (chat completions endpoint, Secrets attribute holding the key)
+PROVIDERS = {
+    "openrouter": ("https://openrouter.ai/api/v1/chat/completions", "openrouter_api_key"),
+    "groq": ("https://api.groq.com/openai/v1/chat/completions", "groq_api_key"),
+    "gemini": ("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", "gemini_api_key"),
+    "cerebras": ("https://api.cerebras.ai/v1/chat/completions", "cerebras_api_key"),
+}
+
+
+def split_model(qualified: str) -> tuple[str, str]:
+    """'groq::llama-3.3-70b-versatile' -> ('groq', 'llama-3.3-70b-versatile')."""
+    provider, sep, model = qualified.partition("::")
+    if not sep:
+        return "openrouter", qualified  # unqualified = openrouter
+    return provider, model
 
 
 @dataclass
@@ -40,22 +61,27 @@ class OpenRouterClient:
         json_mode: bool = False,
         reasoning_effort: str | None = None,  # cap thinking on reasoning models
     ) -> LLMResponse:
+        provider, model_id = split_model(model)
+        api_url, key_attr = PROVIDERS[provider]
+        api_key = getattr(self.secrets, key_attr)
+        if not api_key:
+            raise RuntimeError(f"no API key configured for provider {provider}")
         payload: dict = {
-            "model": model,
+            "model": model_id,
             "messages": messages,
             "max_tokens": max_tokens,
             "temperature": temperature,
         }
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
-        if reasoning_effort:
-            payload["reasoning"] = {"effort": reasoning_effort}
-        headers = {"Authorization": f"Bearer {self.secrets.openrouter_api_key}"}
+        if reasoning_effort and provider == "openrouter":
+            payload["reasoning"] = {"effort": reasoning_effort}  # OpenRouter extension
+        headers = {"Authorization": f"Bearer {api_key}"}
 
         delay = 3.0
         for attempt in range(RETRIES):
             t0 = time.perf_counter()
-            resp = httpx.post(API_URL, json=payload, headers=headers, timeout=180)
+            resp = httpx.post(api_url, json=payload, headers=headers, timeout=180)
             latency = int((time.perf_counter() - t0) * 1000)
             if resp.status_code == 200:
                 data = resp.json()

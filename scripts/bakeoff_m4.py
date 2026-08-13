@@ -21,10 +21,8 @@ from footnote.answer.generate import Answerer
 from footnote.config import RunConfig
 
 CANDIDATES = [
-    "nvidia/nemotron-3-ultra-550b-a55b:free",
-    "nvidia/nemotron-3-super-120b-a12b:free",
-    "google/gemma-4-31b-it:free",
-    "openai/gpt-oss-20b:free",
+    "groq::llama-3.3-70b-versatile",
+    "gemini::gemini-3.1-flash-lite-preview",
 ]
 
 # (question, should_refuse)
@@ -82,7 +80,7 @@ def main() -> None:
         print(f"{model}: json={stats['json_ok']}/8 grounded={stats['citations_ok']}/6 "
               f"refusals={stats['refusal_ok']}/2 lat={stats['median_latency_ms']}ms")
 
-    out = Path("results/bakeoff_m4.json")
+    out = Path("results/bakeoff_m4_round2.json")
     out.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(f"written {out}")
 
