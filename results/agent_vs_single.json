@@ -1,0 +1,282 @@
+{
+  "suite": "agent_vs_single",
+  "timestamp": "2026-08-13T18:26:38",
+  "git_sha": "7ede01f",
+  "config": {
+    "corpus": [
+      "gdpr",
+      "ai_act"
+    ],
+    "chunk_strategy": "provision",
+    "window_size": 512,
+    "window_overlap": 64,
+    "embedding_provider": "jina",
+    "embedding_model": "jina-embeddings-v3",
+    "dense_enabled": true,
+    "sparse_enabled": true,
+    "top_k_dense": 50,
+    "top_k_sparse": 50,
+    "fusion_k": 60,
+    "rerank_enabled": true,
+    "rerank_model": "jina-reranker-v2-base-multilingual",
+    "rerank_top_n": 10,
+    "generation_model": "groq::llama-3.3-70b-versatile",
+    "fallback_models": [
+      "gemini::gemini-3.1-flash-lite-preview",
+      "openrouter::openai/gpt-oss-20b:free"
+    ],
+    "judge_model": "gemini::gemini-3.1-flash-lite-preview",
+    "prompt_version": "v1",
+    "confidence_threshold": 0.0,
+    "agent_enabled": false,
+    "max_hops": 4,
+    "max_cost_usd": 0.05
+  },
+  "config_hash": "91208724d357",
+  "single": {
+    "n": 10,
+    "mean_gold_coverage": 0.4167,
+    "answered_rate": 0.9,
+    "mean_wall_s": 32.0
+  },
+  "agent": {
+    "n": 10,
+    "mean_gold_coverage": 0.4167,
+    "answered_rate": 0.9,
+    "mean_wall_s": 107.7
+  },
+  "rows": [
+    {
+      "qid": "mh_ai_act_art_11",
+      "question": "What does the AI ACT require regarding technical documentation, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:11",
+        "ai_act:anx:IV",
+        "ai_act:anx:I"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.3333333333333333,
+        "n_citations": 6,
+        "wall_s": 31.0
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.3333333333333333,
+        "n_citations": 5,
+        "hops": 4,
+        "terminated_by": "answer",
+        "policy_tokens": 6378,
+        "wall_s": 139.1
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_110",
+      "question": "What does the AI ACT require regarding amendment to directive (eu) 2020/1828, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:110",
+        "ai_act:anx:I"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 1,
+        "wall_s": 32.7
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 1,
+        "hops": 2,
+        "terminated_by": "answer",
+        "policy_tokens": 2898,
+        "wall_s": 80.6
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_111",
+      "question": "What does the AI ACT require regarding ai systems already placed on the market or put into service and general-purpose ai models already placed on the marked, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:111",
+        "ai_act:anx:X"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 4,
+        "wall_s": 30.3
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 4,
+        "hops": 3,
+        "terminated_by": "answer",
+        "policy_tokens": 5138,
+        "wall_s": 107.3
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_112",
+      "question": "What does the AI ACT require regarding evaluation and review, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:112",
+        "ai_act:anx:III",
+        "ai_act:anx:I"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.3333333333333333,
+        "n_citations": 10,
+        "wall_s": 30.9
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.3333333333333333,
+        "n_citations": 7,
+        "hops": 2,
+        "terminated_by": "answer",
+        "policy_tokens": 2295,
+        "wall_s": 86.4
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_12",
+      "question": "What does the AI ACT require regarding record-keeping, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:12",
+        "ai_act:anx:III"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 5,
+        "wall_s": 32.3
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 7,
+        "hops": 2,
+        "terminated_by": "answer",
+        "policy_tokens": 2300,
+        "wall_s": 95.0
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_14",
+      "question": "What does the AI ACT require regarding human oversight, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:14",
+        "ai_act:anx:III"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 8,
+        "wall_s": 35.6
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 6,
+        "hops": 2,
+        "terminated_by": "answer",
+        "policy_tokens": 2307,
+        "wall_s": 89.4
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_2",
+      "question": "What does the AI ACT require regarding scope, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:2",
+        "ai_act:anx:I"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 4,
+        "wall_s": 31.5
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 8,
+        "hops": 4,
+        "terminated_by": "answer",
+        "policy_tokens": 5502,
+        "wall_s": 143.1
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_22",
+      "question": "What does the AI ACT require regarding authorised representatives of providers of high-risk ai systems, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:22",
+        "ai_act:anx:VIII"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 4,
+        "wall_s": 33.0
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 4,
+        "hops": 3,
+        "terminated_by": "answer",
+        "policy_tokens": 4736,
+        "wall_s": 126.7
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_23",
+      "question": "What does the AI ACT require regarding obligations of importers, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:23",
+        "ai_act:anx:IV"
+      ],
+      "single": {
+        "verdict": "refused",
+        "gold_coverage": 0.0,
+        "n_citations": 0,
+        "wall_s": 30.7
+      },
+      "agent": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 8,
+        "hops": 3,
+        "terminated_by": "answer",
+        "policy_tokens": 4689,
+        "wall_s": 122.7
+      }
+    },
+    {
+      "qid": "mh_ai_act_art_25",
+      "question": "What does the AI ACT require regarding responsibilities along the ai value chain, including everything it lists elsewhere?",
+      "gold": [
+        "ai_act:art:25",
+        "ai_act:anx:I"
+      ],
+      "single": {
+        "verdict": "answered",
+        "gold_coverage": 0.5,
+        "n_citations": 8,
+        "wall_s": 32.0
+      },
+      "agent": {
+        "verdict": "refused",
+        "gold_coverage": 0.0,
+        "n_citations": 0,
+        "hops": 2,
+        "terminated_by": "answer",
+        "policy_tokens": 2451,
+        "wall_s": 86.7
+      }
+    }
+  ]
+}
