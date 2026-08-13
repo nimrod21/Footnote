@@ -1,0 +1,8 @@
+# Baseline RunConfig — every field mirrors footnote.config.RunConfig
+corpus: [gdpr, ai_act]
+chunk_strategy: provision
+embedding_provider: jina
+dense_enabled: true
+sparse_enabled: true
+rerank_enabled: true
+agent_enabled: false
