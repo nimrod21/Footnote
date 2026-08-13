@@ -116,6 +116,10 @@ def ask(
         r = ar.ask
     else:
         r = Answerer(cfg).ask(question, instrument=instrument)
+
+    from footnote.trace.db import record
+    record("cli" if not agent else "agent", question, r, cfg,
+           agent_trace=ar.trace if agent else None)
     a = r.answer
     typer.echo(f"[{a.verdict}] confidence={a.confidence:.3f}"
                + (f" gate={r.gate_fired}" if r.gate_fired else ""))
@@ -169,7 +173,14 @@ def eval(
 @app.command()
 def traces(limit: int = typer.Option(20)) -> None:
     """Recent queries: cost totals, latency, refusal rate. (M8)"""
-    raise typer.Exit(_todo("traces", "M8"))
+    import json as _json
+
+    from footnote.trace import db
+
+    typer.echo(_json.dumps(db.summary(), indent=2))
+    for t in db.recent(limit):
+        typer.echo(f"{t['ts']} [{t['source']}] {t['verdict']:<12} "
+                   f"{t['latency_ms']}ms  {t['question'][:70]}")
 
 
 def _todo(cmd: str, milestone: str) -> int:

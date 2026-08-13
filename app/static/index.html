@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Footnote — GDPR &amp; EU AI Act, with receipts</title>
+<style>
+  :root { --bg:#0f1115; --panel:#171a21; --line:#2a2f3a; --text:#e8eaf0; --dim:#9aa3b2;
+          --acc:#5b8def; --ok:#3fb68b; --warn:#e0a53f; --bad:#e06c5f; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font:15px/1.55 system-ui, "Segoe UI", sans-serif; }
+  .wrap { max-width:880px; margin:0 auto; padding:32px 20px 80px; }
+  h1 { font-size:22px; margin:0 0 4px; } h1 span { color:var(--acc); }
+  .sub { color:var(--dim); margin-bottom:20px; font-size:13px; }
+  .bar { display:flex; gap:8px; flex-wrap:wrap; }
+  input[type=text] { flex:1; min-width:260px; background:var(--panel); color:var(--text);
+    border:1px solid var(--line); border-radius:8px; padding:11px 14px; font-size:15px; }
+  select, button { background:var(--panel); color:var(--text); border:1px solid var(--line);
+    border-radius:8px; padding:10px 14px; font-size:14px; cursor:pointer; }
+  button.ask { background:var(--acc); border-color:var(--acc); color:#fff; font-weight:600; }
+  label.tog { display:flex; align-items:center; gap:6px; color:var(--dim); font-size:13px;
+    border:1px solid var(--line); border-radius:8px; padding:0 12px; background:var(--panel); }
+  .examples { margin:10px 0 0; font-size:12.5px; color:var(--dim); }
+  .examples a { color:var(--acc); text-decoration:none; margin-right:12px; cursor:pointer; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+          padding:18px 20px; margin-top:18px; }
+  .verdict { font-size:12px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; }
+  .v-answered { color:var(--ok); } .v-refused { color:var(--warn); } .v-out_of_scope { color:var(--bad); }
+  .cite { display:inline-block; background:#20263a; border:1px solid #33406b; color:#aec4ff;
+          border-radius:6px; padding:1px 8px; margin:2px 3px; font-size:12.5px; cursor:pointer; }
+  .prov { border-left:3px solid var(--acc); background:#141824; padding:12px 14px;
+          margin-top:12px; border-radius:6px; font-size:13.5px; }
+  .prov .lbl { font-weight:700; } .prov a { color:var(--acc); font-size:12px; }
+  .prov.recital { border-left-color:var(--warn); }
+  .prov.recital .lbl::after { content:" — recital (explanatory, not binding)"; color:var(--warn); font-weight:400; font-size:11.5px; }
+  .quote { color:#c9d4ee; font-style:italic; }
+  details { margin-top:14px; } summary { cursor:pointer; color:var(--dim); font-size:13px; }
+  .hop { border-left:2px solid var(--line); margin:8px 0 8px 6px; padding:2px 0 2px 14px; font-size:13px; }
+  .hop b { color:var(--acc); } .hop .obs { color:var(--dim); }
+  .meta { color:var(--dim); font-size:12px; margin-top:12px; }
+  .disc { color:var(--dim); font-size:11.5px; border-top:1px solid var(--line);
+          margin-top:14px; padding-top:10px; }
+  .spin { color:var(--dim); } .err { color:var(--bad); }
+  footer { color:var(--dim); font-size:12px; margin-top:36px; }
+  footer a { color:var(--acc); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Footnote<span>.</span></h1>
+  <div class="sub">Ask the GDPR or the EU AI Act a question. Every claim cites the exact
+    provision — or it refuses. <b>Not legal advice.</b></div>
+
+  <div class="bar">
+    <input id="q" type="text" placeholder="e.g. Is an AI system that screens CVs high-risk?"
+           onkeydown="if(event.key==='Enter')go()">
+    <select id="inst">
+      <option value="">Both regulations</option>
+      <option value="gdpr">GDPR only</option>
+      <option value="ai_act">AI Act only</option>
+    </select>
+    <label class="tog"><input id="agent" type="checkbox"> agent mode</label>
+    <button class="ask" onclick="go()">Ask</button>
+  </div>
+  <div class="examples">Try:
+    <a onclick="fill('How long do I have to report a data breach?')">breach deadline</a>
+    <a onclick="fill('Is an AI system used for CV screening in recruitment high-risk?', true)">CV screening (agent)</a>
+    <a onclick="fill('What does Article 22 GDPR say?')">Article 22</a>
+    <a onclick="fill('What does Article 150 GDPR say?')">a trap</a>
+  </div>
+
+  <div id="out"></div>
+
+  <footer>
+    <a href="/docs">API docs</a> · answers grounded in
+    Regulation (EU) 2016/679 and Regulation (EU) 2024/1689 ·
+    EU text reused under Decision 2011/833/EU · only the Official Journal is authentic
+  </footer>
+</div>
+
+<script>
+const out = document.getElementById("out");
+function fill(t, agent) {
+  document.getElementById("q").value = t;
+  document.getElementById("agent").checked = !!agent;
+  go();
+}
+function esc(s) { const d = document.createElement("div"); d.textContent = s ?? ""; return d.innerHTML; }
+
+async function go() {
+  const q = document.getElementById("q").value.trim();
+  if (q.length < 5) return;
+  const agent = document.getElementById("agent").checked;
+  out.innerHTML = `<div class="card spin">${agent ? "Researching (multi-hop)…" : "Retrieving and answering…"} free-tier models can take up to a minute.</div>`;
+  try {
+    const r = await fetch("/query", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({question: q, agent,
+        instrument: document.getElementById("inst").value || null}),
+    });
+    if (!r.ok) {
+      const detail = (await r.json().catch(() => ({}))).detail || r.statusText;
+      out.innerHTML = `<div class="card err">${esc(String(detail))}</div>`;
+      return;
+    }
+    render(await r.json());
+  } catch (e) {
+    out.innerHTML = `<div class="card err">${esc(String(e))}</div>`;
+  }
+}
+
+function render(a) {
+  let html = `<div class="card">`;
+  html += `<div class="verdict v-${a.verdict}">${a.verdict.replace("_", " ")}`
+       + ` · confidence ${(a.confidence).toFixed(2)}</div>`;
+  if (a.text) html += `<p>${esc(a.text)}</p>`;
+  if (a.refusal_reason) html += `<p class="quote">${esc(a.refusal_reason)}</p>`;
+  if (a.citations.length) {
+    html += `<div>` + a.citations.map((c, i) =>
+      `<span class="cite" onclick="toggleProv(${i})">${esc(c.citation_label)}</span>`).join("") + `</div>`;
+    html += a.citations.map((c, i) => {
+      const rec = c.citation_label.startsWith("Recital");
+      return `<div class="prov ${rec ? "recital" : ""}" id="prov${i}" style="display:none">
+        <span class="lbl">${esc(c.citation_label)}</span><br>
+        <span class="quote">“${esc(c.quote)}”</span><br>
+        <a href="${esc(c.eurlex_url)}" target="_blank" rel="noopener">view in EUR-Lex ↗</a></div>`;
+    }).join("");
+  }
+  if (a.agent_hops != null) {
+    html += `<details open><summary>agent timeline — ${a.agent_hops} hops</summary>
+      <div id="hops" class="spin">loading trace…</div></details>`;
+  }
+  html += `<div class="meta">model cost $${a.cost_usd.toFixed(4)} · ${a.latency_ms} ms ·
+    trace <a style="color:var(--acc)" href="/traces/${a.trace_id}" target="_blank">${a.trace_id.slice(0, 8)}</a></div>`;
+  html += `<div class="disc">${esc(a.disclaimer)}</div></div>`;
+  out.innerHTML = html;
+  if (a.agent_hops != null) loadHops(a.trace_id);
+}
+
+function toggleProv(i) {
+  const el = document.getElementById("prov" + i);
+  el.style.display = el.style.display === "none" ? "block" : "none";
+}
+
+async function loadHops(id) {
+  try {
+    const t = await (await fetch("/traces/" + id)).json();
+    const hops = JSON.parse(t.agent_trace || "[]");
+    document.getElementById("hops").outerHTML = hops.map(h =>
+      `<div class="hop"><b>${esc(h.tool)}</b>(${esc(JSON.stringify(h.args))})<br>
+       <span class="obs">${esc(h.observation)}</span>
+       ${h.reasoning ? "<br><span class='obs'>· " + esc(h.reasoning) + "</span>" : ""}</div>`
+    ).join("") || "<div class='hop obs'>no hops recorded</div>";
+  } catch { /* trace endpoint unavailable */ }
+}
+</script>
+</body>
+</html>
