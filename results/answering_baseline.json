@@ -1,0 +1,799 @@
+{
+  "suite": "answering+refusal",
+  "timestamp": "2026-08-13T18:02:26",
+  "git_sha": "a291191",
+  "config": {
+    "corpus": [
+      "gdpr",
+      "ai_act"
+    ],
+    "chunk_strategy": "provision",
+    "window_size": 512,
+    "window_overlap": 64,
+    "embedding_provider": "jina",
+    "embedding_model": "jina-embeddings-v3",
+    "dense_enabled": true,
+    "sparse_enabled": true,
+    "top_k_dense": 50,
+    "top_k_sparse": 50,
+    "fusion_k": 60,
+    "rerank_enabled": true,
+    "rerank_model": "jina-reranker-v2-base-multilingual",
+    "rerank_top_n": 10,
+    "generation_model": "groq::llama-3.3-70b-versatile",
+    "fallback_models": [
+      "gemini::gemini-3.1-flash-lite-preview",
+      "openrouter::openai/gpt-oss-20b:free"
+    ],
+    "judge_model": "gemini::gemini-3.1-flash-lite-preview",
+    "prompt_version": "v1",
+    "confidence_threshold": 0.0,
+    "agent_enabled": false,
+    "max_hops": 4,
+    "max_cost_usd": 0.05
+  },
+  "config_hash": "91208724d357",
+  "answerable": {
+    "n": 30,
+    "answered_rate": 0.9667,
+    "over_refusal_rate": 0.0333,
+    "citation_precision": 0.6506,
+    "any_gold_cited_rate": 0.931
+  },
+  "negatives": {
+    "out_of_scope": {
+      "n": 8,
+      "correct_refusal_rate": 1.0,
+      "false_answer_rate": 0.0
+    },
+    "unanswerable": {
+      "n": 8,
+      "correct_refusal_rate": 1.0,
+      "false_answer_rate": 0.0
+    },
+    "trap": {
+      "n": 6,
+      "correct_refusal_rate": 1.0,
+      "false_answer_rate": 0.0
+    },
+    "fabrication_rate": 0.0
+  },
+  "rows": [
+    {
+      "qid": "au_01",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 6(1) GDPR",
+        "Recital 10 GDPR"
+      ],
+      "latency_ms": 2699,
+      "error": null
+    },
+    {
+      "qid": "au_02",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 0,
+      "cited_labels": [
+        "Recital 47 GDPR",
+        "Article 21(2) GDPR",
+        "Article 21(3) GDPR"
+      ],
+      "latency_ms": 7950,
+      "error": null
+    },
+    {
+      "qid": "au_03",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 4,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 4(11) GDPR",
+        "Recital 32 GDPR",
+        "Article 7(4) GDPR",
+        "Recital 43 GDPR"
+      ],
+      "latency_ms": 3820,
+      "error": null
+    },
+    {
+      "qid": "au_04",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 33(1) GDPR",
+        "Article 33(1) GDPR",
+        "Recital 85 GDPR"
+      ],
+      "latency_ms": 7044,
+      "error": null
+    },
+    {
+      "qid": "au_05",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 3,
+      "cited_labels": [
+        "Article 34(1) GDPR",
+        "Article 34(3) GDPR",
+        "Article 34(4) GDPR"
+      ],
+      "latency_ms": 5266,
+      "error": null
+    },
+    {
+      "qid": "au_06",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 37(1) GDPR",
+        "Article 37(4) GDPR"
+      ],
+      "latency_ms": 6794,
+      "error": null
+    },
+    {
+      "qid": "au_07",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 4,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 17(1) GDPR",
+        "Recital 65 GDPR",
+        "Recital 66 GDPR",
+        "Recital 65 GDPR"
+      ],
+      "latency_ms": 4265,
+      "error": null
+    },
+    {
+      "qid": "au_08",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 1,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 22(1) GDPR"
+      ],
+      "latency_ms": 1918,
+      "error": null
+    },
+    {
+      "qid": "au_09",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 13(1) GDPR",
+        "Article 13(2) GDPR"
+      ],
+      "latency_ms": 7811,
+      "error": null
+    },
+    {
+      "qid": "au_10",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Recital 52 GDPR",
+        "Recital 53 GDPR",
+        "Article 9(3) GDPR"
+      ],
+      "latency_ms": 5935,
+      "error": null
+    },
+    {
+      "qid": "au_11",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 5,
+      "cited_gold": 3,
+      "cited_labels": [
+        "Article 44 GDPR",
+        "Article 45(1) GDPR",
+        "Article 46(1) GDPR",
+        "Article 49(1) GDPR",
+        "Article 48 GDPR"
+      ],
+      "latency_ms": 6747,
+      "error": null
+    },
+    {
+      "qid": "au_12",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 3,
+      "cited_labels": [
+        "Article 83(5) GDPR",
+        "Article 83(4) GDPR",
+        "Article 83(6) GDPR"
+      ],
+      "latency_ms": 5749,
+      "error": null
+    },
+    {
+      "qid": "au_13",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 35(1) GDPR",
+        "Recital 91 GDPR"
+      ],
+      "latency_ms": 2390,
+      "error": null
+    },
+    {
+      "qid": "au_14",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 28(4) GDPR",
+        "Article 28(6) GDPR"
+      ],
+      "latency_ms": 4558,
+      "error": null
+    },
+    {
+      "qid": "au_15",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 20(1) GDPR",
+        "Article 20(2) GDPR",
+        "Recital 68 GDPR"
+      ],
+      "latency_ms": 2402,
+      "error": null
+    },
+    {
+      "qid": "au_16",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 3(2) GDPR",
+        "Article 3(3) GDPR",
+        "Recital 23 GDPR"
+      ],
+      "latency_ms": 3608,
+      "error": null
+    },
+    {
+      "qid": "au_17",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 1,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 30(1) GDPR"
+      ],
+      "latency_ms": 4695,
+      "error": null
+    },
+    {
+      "qid": "au_18",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 32(1) GDPR",
+        "Recital 78 GDPR"
+      ],
+      "latency_ms": 5383,
+      "error": null
+    },
+    {
+      "qid": "au_19",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "refused",
+      "gate_fired": "verification",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 5058,
+      "error": null
+    },
+    {
+      "qid": "au_20",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 1,
+      "cited_gold": 0,
+      "cited_labels": [
+        "Recital 57 AI Act"
+      ],
+      "latency_ms": 2975,
+      "error": null
+    },
+    {
+      "qid": "au_21",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 1,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 50(1) AI Act"
+      ],
+      "latency_ms": 3791,
+      "error": null
+    },
+    {
+      "qid": "au_22",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 8,
+      "cited_gold": 7,
+      "cited_labels": [
+        "Article 9(1) AI Act",
+        "Article 9(2) AI Act",
+        "Recital 65 AI Act",
+        "Article 9(2) AI Act",
+        "Article 9(5) AI Act",
+        "Article 9(5) AI Act",
+        "Article 9(6) AI Act",
+        "Article 9(3) AI Act"
+      ],
+      "latency_ms": 3369,
+      "error": null
+    },
+    {
+      "qid": "au_23",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 10(1) AI Act",
+        "Article 10(2) AI Act"
+      ],
+      "latency_ms": 4863,
+      "error": null
+    },
+    {
+      "qid": "au_24",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 2,
+      "cited_labels": [
+        "Article 14(1) AI Act",
+        "Article 14(2) AI Act",
+        "Article 26(2) AI Act"
+      ],
+      "latency_ms": 3198,
+      "error": null
+    },
+    {
+      "qid": "au_25",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 53(3) AI Act",
+        "Recital 117 AI Act"
+      ],
+      "latency_ms": 4834,
+      "error": null
+    },
+    {
+      "qid": "au_26",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 3,
+      "cited_gold": 3,
+      "cited_labels": [
+        "Article 50(4) AI Act",
+        "Article 50(4) AI Act",
+        "Article 50(4) AI Act"
+      ],
+      "latency_ms": 4114,
+      "error": null
+    },
+    {
+      "qid": "au_27",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 1,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 3(1) AI Act"
+      ],
+      "latency_ms": 4838,
+      "error": null
+    },
+    {
+      "qid": "au_28",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 7,
+      "cited_gold": 3,
+      "cited_labels": [
+        "Article 99(3) AI Act",
+        "Article 100(2) AI Act",
+        "Article 100(3) AI Act",
+        "Article 99(5) AI Act",
+        "Article 101(1) AI Act",
+        "Article 99(7) AI Act",
+        "Recital 168 AI Act"
+      ],
+      "latency_ms": 4203,
+      "error": null
+    },
+    {
+      "qid": "au_29",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 5,
+      "cited_gold": 3,
+      "cited_labels": [
+        "Article 5(3) AI Act",
+        "Article 5(2) AI Act",
+        "Article 5(2) AI Act",
+        "Recital 35 AI Act",
+        "Recital 32 AI Act"
+      ],
+      "latency_ms": 4193,
+      "error": null
+    },
+    {
+      "qid": "au_30",
+      "source": "authored",
+      "expect": "answered",
+      "verdict": "answered",
+      "gate_fired": null,
+      "n_citations": 2,
+      "cited_gold": 1,
+      "cited_labels": [
+        "Article 16 AI Act",
+        "Article 49(1) AI Act"
+      ],
+      "latency_ms": 5545,
+      "error": null
+    },
+    {
+      "qid": "os_01",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "os_02",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "os_03",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "os_04",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "os_05",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "os_06",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "os_07",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "os_08",
+      "source": "negative:out_of_scope",
+      "expect": "out_of_scope",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "un_01",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "un_02",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "un_03",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 2292,
+      "error": null
+    },
+    {
+      "qid": "un_04",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "un_05",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 2508,
+      "error": null
+    },
+    {
+      "qid": "un_06",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 1569,
+      "error": null
+    },
+    {
+      "qid": "un_07",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "un_08",
+      "source": "negative:unanswerable",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 4033,
+      "error": null
+    },
+    {
+      "qid": "tr_01",
+      "source": "negative:trap",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 3649,
+      "error": null
+    },
+    {
+      "qid": "tr_02",
+      "source": "negative:trap",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 1746,
+      "error": null
+    },
+    {
+      "qid": "tr_03",
+      "source": "negative:trap",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 4221,
+      "error": null
+    },
+    {
+      "qid": "tr_04",
+      "source": "negative:trap",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 3868,
+      "error": null
+    },
+    {
+      "qid": "tr_05",
+      "source": "negative:trap",
+      "expect": "refused",
+      "verdict": "out_of_scope",
+      "gate_fired": "scope",
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 0,
+      "error": null
+    },
+    {
+      "qid": "tr_06",
+      "source": "negative:trap",
+      "expect": "refused",
+      "verdict": "refused",
+      "gate_fired": null,
+      "n_citations": 0,
+      "cited_gold": 0,
+      "cited_labels": [],
+      "latency_ms": 4017,
+      "error": null
+    }
+  ]
+}
