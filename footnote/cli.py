@@ -90,11 +90,35 @@ def search(
 @app.command()
 def ask(
     question: str,
+    instrument: str = typer.Option(None),
     agent: bool = typer.Option(False, help="Use the multi-hop research loop"),
     max_hops: int = typer.Option(4),
+    model: str = typer.Option(None, help="Override generation model"),
 ) -> None:
     """Answer a question with citations, or refuse. (M4/M5)"""
-    raise typer.Exit(_todo("ask", "M4"))
+    from footnote.answer.generate import Answerer
+    from footnote.config import RunConfig
+
+    cfg = RunConfig()
+    if model:
+        cfg.generation_model = model
+    if agent:
+        raise typer.Exit(_todo("--agent", "M5"))
+
+    r = Answerer(cfg).ask(question, instrument=instrument)
+    a = r.answer
+    typer.echo(f"[{a.verdict}] confidence={a.confidence:.3f}"
+               + (f" gate={r.gate_fired}" if r.gate_fired else ""))
+    if a.text:
+        typer.echo(a.text)
+    for c in a.citations:
+        typer.echo(f"  - {c.citation_label}: \"{c.quote[:110]}\"")
+    if a.refusal_reason:
+        typer.echo(f"  reason: {a.refusal_reason}")
+    if r.llm:
+        typer.echo(f"  [{r.llm.model} {r.llm.prompt_tokens}+{r.llm.completion_tokens}tok "
+                   f"{r.llm.latency_ms}ms ${r.llm.cost_usd:.4f}]")
+    typer.echo(f"  {a.disclaimer}")
 
 
 @app.command()
