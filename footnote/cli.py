@@ -61,9 +61,30 @@ def search(
     query: str,
     instrument: str = typer.Option(None),
     type: str = typer.Option(None, help="article|recital|annex|definition"),
+    no_rerank: bool = typer.Option(False),
+    no_sparse: bool = typer.Option(False),
+    no_dense: bool = typer.Option(False),
 ) -> None:
     """Hybrid search over indexed provisions. (M3)"""
-    raise typer.Exit(_todo("search", "M3"))
+    from footnote.config import RunConfig
+    from footnote.retrieve.pipeline import Retriever
+
+    cfg = RunConfig(
+        rerank_enabled=not no_rerank,
+        sparse_enabled=not no_sparse,
+        dense_enabled=not no_dense,
+    )
+    ret = Retriever(cfg).search(query, instrument=instrument, type=type)
+    typer.echo(f"confidence={ret.confidence:.3f} via={ret.results[0].via if ret.results else '-'}")
+    for r in ret.results:
+        parts = [
+            f"d={r.dense_score:.3f}" if r.dense_score is not None else None,
+            f"s={r.sparse_score:.1f}" if r.sparse_score is not None else None,
+            f"rr={r.rerank_score:.3f}" if r.rerank_score is not None else None,
+        ]
+        detail = " ".join(x for x in parts if x)
+        typer.echo(f"{r.score:6.3f}  {r.provision.citation_label:<28} {detail}")
+        typer.echo(f"        {r.provision.text[:100]}")
 
 
 @app.command()
