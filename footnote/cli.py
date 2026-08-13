@@ -10,10 +10,30 @@ app = typer.Typer(help="Ask the GDPR and the EU AI Act a question.", no_args_is_
 @app.command()
 def ingest(
     corpus: str = typer.Option("gdpr,ai_act", help="Comma-separated corpus ids"),
+    strategy: str = typer.Option("provision", help="provision|article|window"),
     dry_run: bool = typer.Option(False, help="Report counts and quota projection only"),
 ) -> None:
-    """Fetch, parse, chunk, embed, and index a corpus. (M1–M2)"""
-    raise typer.Exit(_todo("ingest", "M1"))
+    """Fetch, parse, chunk, embed, and index a corpus. (M1-M2)"""
+    from collections import Counter
+
+    from footnote.corpus.chunkers import estimate_tokens, select_chunks
+    from footnote.corpus.fetch import fetch_instrument
+    from footnote.corpus.parser import parse_instrument
+
+    for iid in corpus.split(","):
+        iid = iid.strip()
+        path = fetch_instrument(iid)
+        provisions = parse_instrument(iid, path)
+        chunks = select_chunks(provisions, strategy)
+        counts = dict(Counter(p.type for p in provisions))
+        typer.echo(
+            f"{iid}: {len(provisions)} provisions {counts} -> "
+            f"{len(chunks)} chunks [{strategy}], ~{estimate_tokens(chunks):,} tokens to embed"
+        )
+    if dry_run:
+        typer.echo("dry run - nothing embedded or indexed.")
+        return
+    raise typer.Exit(_todo("embedding + indexing", "M2"))
 
 
 @app.command()
