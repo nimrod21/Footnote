@@ -26,14 +26,21 @@ def collection_name(model_id: str, strategy: str) -> str:
     return f"footnote__{model_id.replace('-', '_')}__{strategy}"
 
 
+_embedded_client: QdrantClient | None = None
+
+
 class QdrantStore:
     def __init__(self, secrets: Secrets | None = None):
+        global _embedded_client
         s = secrets or Secrets()
         if s.qdrant_url:
             self.client = QdrantClient(url=s.qdrant_url, api_key=s.qdrant_api_key, timeout=60)
             self.mode = "cloud"
         else:
-            self.client = QdrantClient(path="data/qdrant")  # embedded, no account
+            # embedded mode holds a file lock — one client per process, shared
+            if _embedded_client is None:
+                _embedded_client = QdrantClient(path="data/qdrant")
+            self.client = _embedded_client
             self.mode = "embedded"
 
     def ensure_collection(self, name: str, dimensions: int) -> None:
