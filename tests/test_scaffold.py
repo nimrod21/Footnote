@@ -8,6 +8,12 @@ def test_config_hash_stable_and_sensitive():
     assert a.config_hash() != RunConfig(rerank_enabled=False).config_hash()
 
 
+import os
+import pytest
+from pathlib import Path
+
+
+@pytest.mark.skipif(not Path(".env").exists(), reason="no .env (CI)")
 def test_secrets_load_from_env():
     s = Secrets()
     assert s.jina_api_key and s.qdrant_url and s.openrouter_api_key

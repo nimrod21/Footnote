@@ -17,6 +17,11 @@ def test_healthz(client):
     assert client.get("/healthz").json() == {"ok": True}
 
 
+import os
+
+
+@pytest.mark.skipif(not os.environ.get("JINA_API_KEY") and not Path(".env").exists(),
+                    reason="needs Jina + Qdrant (skipped in CI)")
 def test_search_endpoint(client):
     r = client.post("/search", json={"query": "data breach notification", "instrument": "gdpr", "top_k": 5})
     assert r.status_code == 200

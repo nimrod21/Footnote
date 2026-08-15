@@ -1,5 +1,7 @@
 # Footnote
 
+[![tests](https://github.com/nimrod21/Footnote/actions/workflows/tests.yml/badge.svg)](https://github.com/nimrod21/Footnote/actions/workflows/tests.yml)
+
 *Ask the GDPR or the EU AI Act a question. Get the exact article quoted — or an honest refusal.*
 
 Grounded question-answering over EU regulations. Every claim cites the provision it came
