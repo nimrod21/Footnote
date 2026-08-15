@@ -8,6 +8,25 @@ EUR-Lex. When the regulations don't answer the question, it says so instead of g
 
 **Not legal advice.** Only the text published in the Official Journal of the EU is authentic.
 
+**[▶ Try it live](https://footnote-6u6u.onrender.com)** — free-tier hosting: if it's been
+idle, the first load takes about a minute while the instance wakes.
+
+---
+
+![Grounded answer with verbatim citation](docs/img/answer.png)
+
+*A grounded answer: the claim, the citation chip, the verbatim quote from Article 33(1)
+GDPR, the EUR-Lex link, and the cost/latency/trace line.*
+
+![Agent timeline](docs/img/agent.png)
+
+*Agent mode on a cross-referencing question: search → follow Article 6(3)'s reference →
+Annex III(4) (employment) → answer, with per-hop reasoning.*
+
+![Refusal on a trap question](docs/img/refusal.png)
+
+*A trap: Article 150 GDPR does not exist (there are 99). It refuses instead of inventing one.*
+
 ---
 
 ## The numbers
